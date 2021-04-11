@@ -6,8 +6,12 @@
 // 5 : with return you can Unregister listener 
 
 const redux = require('redux')
+const reduxLogger = require('redux-logger')
+
+const logger = reduxLogger.createLogger()
 const createStore = redux.createStore
 const combineReducers = redux.combineReducers
+const applyMiddleware = redux.applyMiddleware
 
 const BUY_MOB = 'BUY_MOB';
 const BUY_TAB = 'BUY_TAB';
@@ -89,7 +93,7 @@ const rootReducer = combineReducers({
     tab: tabReducer,
 })
 
-const store = createStore(rootReducer) // you can have just one store in application
+const store = createStore(rootReducer, applyMiddleware(logger)) // you can have just one store in application
 console.log('initial state is : ', store.getState());
 
 // register listener 
