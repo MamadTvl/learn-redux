@@ -21,7 +21,6 @@ function Todolist(props) {
                         ))
                 }
             </ul>
-
         </div>
     )
 }
