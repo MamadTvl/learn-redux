@@ -1,7 +1,3 @@
-const redux = require('redux')
-const thunkMiddleware = require('redux-thunk').default
-const createStore = redux.createStore
-const applyMiddleware = redux.applyMiddleware
 const {FETCH_USERS_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE} = require('./types')
 
 const initialState = {
@@ -9,8 +5,6 @@ const initialState = {
     users: [],
     error: '',
 }
-
-
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -36,11 +30,4 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-const store = createStore(reducer, applyMiddleware(thunkMiddleware))
-store.subscribe(() => {
-    console.log(store.getState().loading ? 'loading' : store.getState())
-    return
-})
-
-const fetchUsers = require('./action')
-store.dispatch((dispatch) => fetchUsers(dispatch))
+module.exports = reducer
